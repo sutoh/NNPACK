@@ -19,6 +19,7 @@ static pthread_once_t hwinfo_init_control = PTHREAD_ONCE_INIT;
 
 #if (CPUINFO_ARCH_X86 || CPUINFO_ARCH_X86_64) && !defined(__ANDROID__)
 	static void init_x86_hwinfo(void) {
+		cpuinfo_initialize();
 		const struct cpuinfo_cache* l1d = cpuinfo_get_l1d_cache(0);
 		if (l1d != NULL) {
 			nnp_hwinfo.cache.l1 = (struct cache_info) {
